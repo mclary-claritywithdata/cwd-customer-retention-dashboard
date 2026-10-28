@@ -128,9 +128,6 @@ customer_summary["days_since_last_order"] = (
 
 customer_summary["segment"] = "One-time customer"
 
-repeat_recent = (
-    (customer_summary["orders"] >= 2)
-    & (customer_summary["days_since_last_order"] <= inactive_days)
 )
 
 inactive_days = st.slider(
@@ -139,6 +136,12 @@ inactive_days = st.slider(
     max_value=180,
     value=90,
     step=15
+)
+
+repeat_recent = (
+    (customer_summary["orders"] >= 2)
+    & (customer_summary["days_since_last_order"] <= inactive_days)
+
 )
 
 repeat_inactive = (
