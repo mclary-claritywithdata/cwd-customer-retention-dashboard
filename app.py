@@ -25,13 +25,16 @@ data_source = st.radio(
     horizontal=True
 )
 
-uploaded_file = None
+ed_file = None
 
 if data_source == "Upload your own file":
-    uploaded_file = st.file_uploader(
-        "Upload a CSV or Excel transaction file",
-        type=["csv", "xlsx", "xls"]
+    st.subheader("Want help understanding your customer data?")
+    st.write(
+        "Clarity With Data can help your business turn transaction data "
+        "into useful customer-retention insights."
     )
+    st.info("Contact Clarity With Data to discuss becoming a customer.")
+    st.stop()
 
 if data_source == "Try the demo data":
     demo_path = Path(__file__).parent / "OnlineRetail.xlsx"
