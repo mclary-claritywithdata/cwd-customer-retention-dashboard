@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+from pathlib import Path
 
 st.set_page_config(
     page_title="Who's Coming Back?",
@@ -18,33 +19,47 @@ st.info(
     "Quantity, InvoiceDate, UnitPrice, and CustomerID. "
     "Sales values will use the currency in your file."
 )
-
-uploaded_file = st.file_uploader(
-    "Upload your transaction file",
-    type=["csv", "xlsx", "xls"]
+data_source = st.radio(
+    "Choose your data",
+    ["Try the demo data", "Upload your own file"],
+    horizontal=True
 )
 
-inactive_days = st.slider(
-    "Consider a repeat customer inactive after this many days",
-    min_value=30,
-    max_value=180,
-    value=90,
-    step=15
-)
+uploaded_file = None
 
-if uploaded_file is None:
-    st.write("Upload a CSV or Excel transaction file to see the dashboard.")
+if data_source == "Upload your own file":
+    uploaded_file = st.file_uploader(
+        "Upload a CSV or Excel transaction file",
+        type=["csv", "xlsx", "xls"]
+    )
+
+if data_source == "Try the demo data":
+    demo_path = Path(__file__).parent / "OnlineRetail.xlsx"
+    try:
+        df = pd.read_excel(demo_path)
+    except Exception as error:
+        st.error(f"Could not load the demo workbook: {error}")
+        st.stop()
+
+    st.caption(
+        "Demo data: Chen, D. (2015). Online Retail. "
+        "UCI Machine Learning Repository. "
+        "https://doi.org/10.24432/C5BW33. Licensed under CC BY 4.0."
+    )
+
+elif uploaded_file is None:
+    st.info("Upload a transaction file to explore your own data.")
     st.stop()
 
-try:
-    if uploaded_file.name.lower().endswith(".csv"):
-        df = pd.read_csv(uploaded_file)
-    else:
-        df = pd.read_excel(uploaded_file)
-except Exception as error:
-    st.error(f"I couldn’t read that file: {error}")
-    st.stop()
-
+else:
+    try:
+        if uploaded_file.name.lower().endswith(".csv"):
+            df = pd.read_csv(uploaded_file)
+        else:
+            df = pd.read_excel(uploaded_file)
+    except Exception as error:
+        st.error(f"I couldn’t read that file: {error}")
+        st.stop()
 required_columns = [
     "InvoiceNo",
     "Description",
