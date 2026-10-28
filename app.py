@@ -49,8 +49,8 @@ st.write("")
 # Data choice
 # -----------------------------------------------------------------------------
 st.info(
-    "This dashboard uses sample transaction data. Interested in insights from your own data? Select 
-    Upload your own file to learn how Clarity With Data can help."
+    "This dashboard uses sample transaction data. Interested in insights from your own data? Select"
+    "Upload your own file to learn how Clarity With Data can help."
 )
 
 data_source = st.radio(
