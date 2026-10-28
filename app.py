@@ -49,9 +49,8 @@ st.write("")
 # Data choice
 # -----------------------------------------------------------------------------
 st.info(
-    "Explore the included demo, or choose **Upload your own file** to learn how "
-    "to work with Clarity With Data. Transaction data should include: "
-    "InvoiceNo, Description, Quantity, InvoiceDate, UnitPrice, and CustomerID."
+    "This dashboard uses sample transaction data. Interested in insights from your own data? Select 
+    Upload your own file to learn how Clarity With Data can help."
 )
 
 data_source = st.radio(
@@ -63,8 +62,9 @@ data_source = st.radio(
 if data_source == "Upload your own file":
     st.subheader("Bring your customer data into focus")
     st.write(
-        "Want to explore your own transaction data? Clarity With Data can help "
-        "you turn it into clear, useful customer-retention insights."
+        "Turn your data it into clear, useful customer-retention insights."
+        "Interested in working together? Contact Clarity With Data to discuss a customer analysis for your organization."
+        "https://www.claritywithdata.com/contact"
     )
     st.info("Contact Clarity With Data to discuss becoming a customer.")
     st.stop()
