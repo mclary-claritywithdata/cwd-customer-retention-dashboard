@@ -63,7 +63,7 @@ if data_source == "Upload your own file":
     st.subheader("Bring your customer data into focus")
     st.write(
         "Turn your data it into clear, useful customer-retention insights."
-        "Interested in working together? Contact Clarity With Data to discuss a customer analysis for your organization."
+         "Interested in working together? Contact Clarity With Data to discuss a customer analysis for your organization."
         "https://www.claritywithdata.com/contact"
     )
     st.info("Contact Clarity With Data to discuss becoming a customer.")
