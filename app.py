@@ -129,6 +129,15 @@ repeat_recent = (
     (customer_summary["orders"] >= 2)
     & (customer_summary["days_since_last_order"] <= inactive_days)
 )
+
+inactive_days = st.slider(
+    "Consider a repeat customer inactive after this many days",
+    min_value=30,
+    max_value=180,
+    value=90,
+    step=15
+)
+
 repeat_inactive = (
     (customer_summary["orders"] >= 2)
     & (customer_summary["days_since_last_order"] > inactive_days)
